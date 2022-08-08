@@ -7,7 +7,7 @@ function Graphics(props) {
     labels: ["Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"],
     datasets: [
       {
-        label: "Prodctos vendidos",
+        label: "Productos vendidos",
         fill: false,
         backgroundColor: "rgba(73,155,234,1)",
         borderColor: "rgba(73,155,234,1)",
@@ -18,7 +18,7 @@ function Graphics(props) {
         pointHoverBorderColor: "rgba(73,155,234,1)",
         pointRadius: 1,
         pointHitRadius: 10,
-        data: [0.17, 19, 156, 357, 565, 1149],
+        data: [2, 31, 32],
       },
     ],
   };

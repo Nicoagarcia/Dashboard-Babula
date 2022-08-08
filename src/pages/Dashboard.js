@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Navbar from "../components/Navbar";
@@ -8,7 +8,6 @@ import CardsHeader from "../components/CardsHeader";
 import Cards from "../components/Cards";
 import Graphics from "../components/Graphics";
 import TableMaterial from "../components/TableMaterial";
-/*const [user, setUsers] = useState("");*/
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -29,14 +28,6 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-/*const data = () => {
-  fetch("http://localhost:4000/api/users/2")
-    .then((response) => response.json())
-    .then((data) => {
-      setUsers(data.user);
-    });
-};*/
-
 const data = [
   {
     id: 1,
@@ -56,12 +47,58 @@ const data = [
     id: 3,
     Producto: "Torta de miel",
     fecha: "4 de sep. 2020",
-    Compras: 2,
+    Compra: 2,
     imagen: require("../assets/img/torta-de-miel.jpeg"),
   },
 ];
 
 function Dashboard(props) {
+  const [count, setCount] = React.useState(0);
+  React.useEffect(() => {
+    fetch("http://localhost:4000/api/users")
+      .then((response) => response.json())
+      .then((data) => {
+        setCount(data.count.count);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+  const [status, setStatus] = React.useState(0);
+  React.useEffect(() => {
+    fetch("http://localhost:4000/api/users")
+      .then((response) => response.json())
+      .then((data) => {
+        setStatus(data.count.status);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const [counts, setCountP] = React.useState();
+  React.useEffect(() => {
+    fetch("http://localhost:4000/api/products")
+      .then((response) => response.json())
+      .then((data) => {
+        setCountP(data.counts.counts);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+  /*const [status, setStatus] = React.useState(0);
+  React.useEffect(() => {
+    fetch("http://localhost:4000/api/products")
+      .then((response) => response.json())
+      .then((data) => {
+        setStatus(data.count.status);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []); */
+
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -73,7 +110,7 @@ function Dashboard(props) {
         <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
           <CardsHeader
             titulo="Babula"
-            texto="Comida"
+            texto=""
             color="#F8E8DA"
             font="rgba(0, 0, 0)"
           />
@@ -81,7 +118,7 @@ function Dashboard(props) {
         <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
           <CardsHeader
             titulo="Comida"
-            texto="Rusa"
+            texto=""
             color="#F8E8DA"
             font="rgba(0, 0, 0)"
           />
@@ -89,7 +126,7 @@ function Dashboard(props) {
         <Grid item xs={12} sm={4} md={4} lg={4} xl={4}>
           <CardsHeader
             titulo="Buenos Aires"
-            texto="Argentina"
+            texto=""
             color="#F8E8DA"
             font="rgba(0, 0, 0)"
           />
@@ -106,7 +143,7 @@ function Dashboard(props) {
           xl={6}
         >
           <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
-            <Cards titulo="Productos" texto="" />
+            <Cards titulo="Productos" texto={counts} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
@@ -114,11 +151,11 @@ function Dashboard(props) {
           </Grid>
 
           <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
-            <Cards titulo="Administradores" texto="" />
+            <Cards titulo="Status" texto={status} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
-            <Cards titulo="Usuarios" texto="" />
+            <Cards titulo="Usuarios" texto={count} />
           </Grid>
         </Grid>
 

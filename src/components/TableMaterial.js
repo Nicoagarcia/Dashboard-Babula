@@ -26,9 +26,9 @@ function TableMaterial(props) {
       <Table>
         <TableHead>
           <TableRow>
-            <StyledTableCell>Producto</StyledTableCell>
-            <StyledTableCell>Fecha de venta</StyledTableCell>
-            <StyledTableCell>Número de compras</StyledTableCell>
+            <StyledTableCell>Producto/Usuario</StyledTableCell>
+            <StyledTableCell>Fecha de Registro/venta</StyledTableCell>
+            <StyledTableCell>Email/Foto </StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -41,7 +41,7 @@ function TableMaterial(props) {
                 {elemento.Producto}
               </TableCell>
               <TableCell align="center">{elemento.fecha}</TableCell>
-              <TableCell align="center">{elemento.Compras}</TableCell>
+              <TableCell align="center">{elemento.count}</TableCell>
             </TableRow>
           ))}
         </TableBody>
