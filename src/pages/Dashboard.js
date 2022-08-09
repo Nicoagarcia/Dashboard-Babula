@@ -64,12 +64,12 @@ function Dashboard(props) {
         console.error(error);
       });
   }, []);
-  const [status, setStatus] = React.useState(0);
+  const [categoryId, setStatus] = React.useState(0);
   React.useEffect(() => {
-    fetch("http://localhost:4000/api/users")
+    fetch("http://localhost:4000/api/products")
       .then((response) => response.json())
       .then((data) => {
-        setStatus(data.count.status);
+        setStatus(data.countByCategory.length);
       })
       .catch((error) => {
         console.error(error);
@@ -147,11 +147,11 @@ function Dashboard(props) {
           </Grid>
 
           <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
-            <Cards titulo="Categorias" texto="" />
+            <Cards titulo="Categorias" texto={categoryId} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
-            <Cards titulo="Status" texto={status} />
+            <Cards titulo="Status" texto="" />
           </Grid>
 
           <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
