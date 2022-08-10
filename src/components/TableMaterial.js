@@ -19,29 +19,37 @@ const StyledTableCell = withStyles(() => ({
     fontSize: 14,
   },
 }))(TableCell);
-
 function TableMaterial(props) {
+  const [users1, setUsers] = React.useState([]);
+  React.useEffect(() => {
+    fetch("http://localhost:4000/api/products")
+      .then((response) => response.json())
+      .then((data) => {
+        setUsers(data.products);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+  /*console.log(users1);*/
+  //console.log(JSON.stringify(users1));
+  // console.log(JSON.stringify(users1[users1.length - 1]));
   return (
     <TableContainer>
       <Table>
         <TableHead>
           <TableRow>
-            <StyledTableCell>Producto/Usuario</StyledTableCell>
-            <StyledTableCell>Fecha de Registro/venta</StyledTableCell>
-            <StyledTableCell>Email/Foto </StyledTableCell>
+            <StyledTableCell>Producto</StyledTableCell>
+            <StyledTableCell>Descripcion</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.data.map((elemento) => (
+          {users1.map((elemento) => (
             <TableRow key={elemento.id}>
               <TableCell>
-                <img src={elemento.imagen} width="35px" height="25px" />
-                {"  "}
-
-                {elemento.Producto}
+                <TableCell align="center">{elemento.name}</TableCell>
               </TableCell>
-              <TableCell align="center">{elemento.fecha}</TableCell>
-              <TableCell align="center">{elemento.count}</TableCell>
+              <TableCell align="center">{elemento.description}</TableCell>
             </TableRow>
           ))}
         </TableBody>

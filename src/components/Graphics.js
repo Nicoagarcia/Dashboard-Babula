@@ -4,10 +4,10 @@ import "../assets/css/Graphics.css";
 
 function Graphics(props) {
   const data = {
-    labels: ["Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"],
+    labels: ["Febrero", "Marzo", "Abril"],
     datasets: [
       {
-        label: "Productos vendidos",
+        label: "Productos incorporados",
         fill: false,
         backgroundColor: "rgba(73,155,234,1)",
         borderColor: "rgba(73,155,234,1)",
@@ -18,7 +18,7 @@ function Graphics(props) {
         pointHoverBorderColor: "rgba(73,155,234,1)",
         pointRadius: 1,
         pointHitRadius: 10,
-        data: [2, 31, 32],
+        data: [3, 7, 10],
       },
     ],
   };

@@ -87,19 +87,25 @@ function Dashboard(props) {
         console.error(error);
       });
   }, []);
-  /*const [status, setStatus] = React.useState(0);
+  const [users1, setUsers] = React.useState([]);
   React.useEffect(() => {
-    fetch("http://localhost:4000/api/products")
+    fetch("http://localhost:4000/api/users")
       .then((response) => response.json())
       .then((data) => {
-        setStatus(data.count.status);
+        setUsers(data.users[data.users.length - 1].email);
       })
       .catch((error) => {
         console.error(error);
       });
-  }, []); */
+  }, []);
+  console.log(users1);
+  //console.log(JSON.stringify(users1));
+  //console.log(JSON.stringify(users1[users1.length - 1]));
+
+  //const ultimoUsuario = JSON.stringify(users1[users1.length - 1]);
 
   const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
@@ -151,7 +157,7 @@ function Dashboard(props) {
           </Grid>
 
           <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
-            <Cards titulo="Status" texto="" />
+            <Cards titulo="Ultimo usuario" texto={users1} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
